@@ -1,5 +1,6 @@
 import React from 'react';
 // import './Person.css';
+import classes from './Person.css';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
