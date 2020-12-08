@@ -5,6 +5,8 @@ import Persons from '../components/Persons/Persons';
 
 import Cockpit from '../components/Cockpit/Cockpit';
 
+import WithClass from '../hoc/WithClass';
+
 class App extends Component {
   state = {
     persons: [
@@ -57,14 +59,14 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <Cockpit
           persons={this.state.persons}
           showPersons={this.state.showPersons}
           clicked={this.togglePersonHanddler}
         ></Cockpit>
         {persons}
-      </div>
+      </WithClass>
     );
   }
 }
