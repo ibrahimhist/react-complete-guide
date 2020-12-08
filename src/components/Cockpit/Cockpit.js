@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 
 import styled from 'styled-components';
 
@@ -24,6 +24,7 @@ const StyledButton = styled.button`
 
 const cockpit = (props) => {
   const toggleBtnRef = useRef(null);
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     toggleBtnRef.current.click();
@@ -51,9 +52,10 @@ const cockpit = (props) => {
       >
         Toggle persons
       </StyledButton>
-      <AuthContext.Consumer>
+      {/* <AuthContext.Consumer>
         {(context) => <button onClick={context.login}>Login</button>}
-      </AuthContext.Consumer>
+      </AuthContext.Consumer> */}
+      <button onClick={authContext.login}>Login</button>
     </div>
   );
 };
