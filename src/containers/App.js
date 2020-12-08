@@ -16,6 +16,7 @@ class App extends Component {
       { id: 3, name: 'Test2', age: 22 },
     ],
     showPersons: false,
+    changeCounter: 0,
   };
 
   switchNameHandler = (newName) => {
@@ -31,7 +32,12 @@ class App extends Component {
     const person = persons.find((x) => x.id === id);
     person.name = event.target.value;
 
-    this.setState({ persons: persons });
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1,
+      };
+    });
   };
 
   togglePersonHanddler = () => {
