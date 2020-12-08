@@ -8,6 +8,8 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import withClass from '../hoc/withClass';
 import Aux from '../hoc/Auxiliary';
 
+import AuthContext from '../context/auth-context';
+
 class App extends Component {
   state = {
     persons: [
@@ -17,6 +19,7 @@ class App extends Component {
     ],
     showPersons: false,
     changeCounter: 0,
+    authenticated: false,
   };
 
   switchNameHandler = (newName) => {
@@ -53,6 +56,10 @@ class App extends Component {
     this.setState({ persons: persons });
   };
 
+  loginHanddler = () => {
+    this.setState({ authenticated: true });
+  };
+
   render() {
     let persons = null;
     if (this.state.showPersons) {
@@ -61,18 +68,27 @@ class App extends Component {
           persons={this.state.persons}
           clicked={this.deletePersonHanddler}
           changed={this.nameChangedHandler}
+          isAuthenticated={this.state.authenticated}
         ></Persons>
       );
     }
 
     return (
       <Aux>
-        <Cockpit
-          persons={this.state.persons}
-          showPersons={this.state.showPersons}
-          clicked={this.togglePersonHanddler}
-        ></Cockpit>
-        {persons}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHanddler,
+          }}
+        >
+          <Cockpit
+            persons={this.state.persons}
+            showPersons={this.state.showPersons}
+            clicked={this.togglePersonHanddler}
+            login={this.loginHanddler}
+          ></Cockpit>
+          {persons}
+        </AuthContext.Provider>
       </Aux>
 
       // <WithClass classes={classes.App}>

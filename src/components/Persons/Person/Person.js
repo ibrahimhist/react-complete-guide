@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import Aux from '../../../hoc/Auxiliary';
 import withClass from '../../../hoc/withClass';
+import AuthContext from '../../../context/auth-context';
 
 const StyledDiv = styled.div`
   width: 60%;
@@ -52,6 +53,12 @@ class Person extends Component {
       // </StyledDiv>
 
       <Aux>
+        <AuthContext.Consumer>
+          {(context) =>
+            context.authenticated ? <p>Authenticated!</p> : <p>Please Login</p>
+          }
+        </AuthContext.Consumer>
+
         <p onClick={this.props.click}>
           I am a {this.props.name} I am years old {this.props.age}
         </p>
