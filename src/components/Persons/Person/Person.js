@@ -28,6 +28,15 @@ class Person extends Component {
   //   },
   // };
 
+  constructor(props) {
+    super(props);
+    this.inputElement = React.createRef();
+  }
+
+  componentDidMount() {
+    this.inputElement.current.focus();
+  }
+
   render() {
     return (
       // <StyledDiv>
@@ -46,8 +55,10 @@ class Person extends Component {
         <p onClick={this.props.click}>
           I am a {this.props.name} I am years old {this.props.age}
         </p>
-        <p>{this.props.children}</p>
+        <p key='i2'>{this.props.children}</p>
         <input
+          key='i3'
+          ref={this.inputElement}
           type='text'
           onChange={this.props.changed}
           value={this.props.name}
