@@ -4,6 +4,7 @@ import classes from './Person.css';
 import styled from 'styled-components';
 
 import Aux from '../../../hoc/Auxiliary';
+import withClass from '../../../hoc/withClass';
 
 const StyledDiv = styled.div`
   width: 60%;
@@ -27,19 +28,7 @@ class Person extends Component {
 
   render() {
     return (
-      <StyledDiv>
-        <p onClick={this.props.click}>
-          I am a {this.props.name} I am years old {this.props.age}
-        </p>
-        <p>{this.props.children}</p>
-        <input
-          type='text'
-          onChange={this.props.changed}
-          value={this.props.name}
-        />
-      </StyledDiv>
-
-      // <Aux>
+      // <StyledDiv>
       //   <p onClick={this.props.click}>
       //     I am a {this.props.name} I am years old {this.props.age}
       //   </p>
@@ -49,7 +38,19 @@ class Person extends Component {
       //     onChange={this.props.changed}
       //     value={this.props.name}
       //   />
-      // </Aux>
+      // </StyledDiv>
+
+      <Aux>
+        <p onClick={this.props.click}>
+          I am a {this.props.name} I am years old {this.props.age}
+        </p>
+        <p>{this.props.children}</p>
+        <input
+          type='text'
+          onChange={this.props.changed}
+          value={this.props.name}
+        />
+      </Aux>
 
       //  <React.Fragment>
       //   <p onClick={this.props.click}>
@@ -66,4 +67,4 @@ class Person extends Component {
   }
 }
 
-export default Person;
+export default withClass(Person, classes.Person);
